@@ -33,3 +33,39 @@ dt ← 1e¯2 ⋄ steps ← 10000 ⋄ t0 ← 0
 
 ⍝ Done
 'OK' ⎕←
+
+⍝ === FHN ===
+)LOAD fhn.apl
+f ← FHN_f
+x0 ← ¯1 1
+θ  ← 0.7 0.8 12.5    ⍝ a b c
+dt ← 1e¯3 ⋄ steps ← 50000 ⋄ t0 ← 0
+{
+  Mode α λ ← ⍵
+  (xT tT) ← RK4 (x0 t0 θ dt steps)
+  'FHN,',Mode,',',⍕α,',',⍕λ,',',⍕xT[1],',',⍕xT[2],',',⍕0 ⎕←
+}¨ ('Residual' 'ParamMod' 'Control' 'TimeWarp') ∘., 0.1 1
+
+⍝ === NERNST ===
+)LOAD nernst.apl
+f ← NERNST_f
+x0 ← 0.0
+θ  ← 310 1 145 15
+dt ← 1e¯2 ⋄ steps ← 20000 ⋄ t0 ← 0
+{
+  Mode α λ ← ⍵
+  (xT tT) ← RK4 (x0 t0 θ dt steps)
+  'NERNST,',Mode,',',⍕α,',',⍕λ,',',⍕xT[1],',',⍕0,',',⍕0 ⎕←
+}¨ ('Residual' 'ParamMod' 'Control' 'TimeWarp') ∘., 0.1 1
+
+⍝ === POISEUILLE ===
+)LOAD poiseuille.apl
+f ← POIS_f
+x0 ← 0
+θ  ← 100 3.5 10 0.5
+dt ← 1e¯2 ⋄ steps ← 20000 ⋄ t0 ← 0
+{
+  Mode α λ ← ⍵
+  (xT tT) ← RK4 (x0 t0 θ dt steps)
+  'POISEUILLE,',Mode,',',⍕α,',',⍕λ,',',⍕xT[1],',',⍕0,',',⍕0 ⎕←
+}¨ ('Residual' 'ParamMod' 'Control' 'TimeWarp') ∘., 0.1 1
