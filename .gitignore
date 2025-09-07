@@ -1,0 +1,2 @@
+*.out *.log *.workspace *.ws
+.DS_Store Thumbs.db *~
