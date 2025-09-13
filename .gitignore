@@ -1,2 +1,4 @@
-*.out *.log *.workspace *.ws
-.DS_Store Thumbs.db *~
+.venv/
+__pycache__/
+*.pyc
+logs/
