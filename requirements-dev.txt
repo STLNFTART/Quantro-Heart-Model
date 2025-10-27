@@ -1,0 +1,4 @@
+# Development/test dependencies for Quantro Heart Model analysis tooling.
+# Pin exact versions to guarantee reproducibility for Donte Lightfoot's R&D workflows.
+pandas==2.3.3
+matplotlib==3.10.7
