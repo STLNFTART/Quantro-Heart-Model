@@ -1,0 +1,71 @@
+)LOAD overlays.apl
+)LOAD integrators.apl
+)LOAD mm.apl
+)LOAD sir.apl
+
+\u235d Globals used by RK4 and RHS
+Mode \u2190 'Residual'  \u22c4 \u03b1 \u2190 0.1 \u22c4 \u03bb \u2190 1.0
+
+\u235d CSV header
+'model,mode,alpha,lambda,val1,val2,val3' \u2395\u2190
+
+\u235d === MM ===
+f \u2190 MM_f
+x0 \u2190 1 0               \u235d S P
+\u03b8  \u2190 1 0.5             \u235d Vmax Km
+dt \u2190 1e\u00af3 \u22c4 steps \u2190 10000 \u22c4 t0 \u2190 0
+{
+  Mode \u03b1 \u03bb \u2190 \u2375
+  (xT tT) \u2190 RK4 (x0 t0 \u03b8 dt steps)
+  'MM,',Mode,',',\u2355\u03b1,',',\u2355\u03bb,',',\u2355xT[1],',',\u2355xT[2],',',\u23550 \u2395\u2190
+}\u00a8 ('Residual' 'ParamMod' 'Control' 'TimeWarp') \u2218., \u23731 \u22c4 \u235d placeholders
+
+\u235d === SIR ===
+f \u2190 SIR_f
+N \u2190 1000 \u22c4 x0 \u2190 (N-1) 1 0  \u235d S I R
+\u03b8 \u2190 0.3 0.1 N
+dt \u2190 1e\u00af2 \u22c4 steps \u2190 10000 \u22c4 t0 \u2190 0
+{
+  Mode \u03b1 \u03bb \u2190 \u2375
+  (xT tT) \u2190 RK4 (x0 t0 \u03b8 dt steps)
+  'SIR,',Mode,',',\u2355\u03b1,',',\u2355\u03bb,',',\u2355xT[1],',',\u2355xT[2],',',\u2355xT[3] \u2395\u2190
+}\u00a8 ('Residual' 'ParamMod' 'Control' 'TimeWarp') \u2218., 0.1 1.0
+
+\u235d Done
+'OK' \u2395\u2190
+
+\u235d === FHN ===
+)LOAD fhn.apl
+f \u2190 FHN_f
+x0 \u2190 \u00af1 1
+\u03b8  \u2190 0.7 0.8 12.5    \u235d a b c
+dt \u2190 1e\u00af3 \u22c4 steps \u2190 50000 \u22c4 t0 \u2190 0
+{
+  Mode \u03b1 \u03bb \u2190 \u2375
+  (xT tT) \u2190 RK4 (x0 t0 \u03b8 dt steps)
+  'FHN,',Mode,',',\u2355\u03b1,',',\u2355\u03bb,',',\u2355xT[1],',',\u2355xT[2],',',\u23550 \u2395\u2190
+}\u00a8 ('Residual' 'ParamMod' 'Control' 'TimeWarp') \u2218., 0.1 1
+
+\u235d === NERNST ===
+)LOAD nernst.apl
+f \u2190 NERNST_f
+x0 \u2190 0.0
+\u03b8  \u2190 310 1 145 15
+dt \u2190 1e\u00af2 \u22c4 steps \u2190 20000 \u22c4 t0 \u2190 0
+{
+  Mode \u03b1 \u03bb \u2190 \u2375
+  (xT tT) \u2190 RK4 (x0 t0 \u03b8 dt steps)
+  'NERNST,',Mode,',',\u2355\u03b1,',',\u2355\u03bb,',',\u2355xT[1],',',\u23550,',',\u23550 \u2395\u2190
+}\u00a8 ('Residual' 'ParamMod' 'Control' 'TimeWarp') \u2218., 0.1 1
+
+\u235d === POISEUILLE ===
+)LOAD poiseuille.apl
+f \u2190 POIS_f
+x0 \u2190 0
+\u03b8  \u2190 100 3.5 10 0.5
+dt \u2190 1e\u00af2 \u22c4 steps \u2190 20000 \u22c4 t0 \u2190 0
+{
+  Mode \u03b1 \u03bb \u2190 \u2375
+  (xT tT) \u2190 RK4 (x0 t0 \u03b8 dt steps)
+  'POISEUILLE,',Mode,',',\u2355\u03b1,',',\u2355\u03bb,',',\u2355xT[1],',',\u23550,',',\u23550 \u2395\u2190
+}\u00a8 ('Residual' 'ParamMod' 'Control' 'TimeWarp') \u2218., 0.1 1

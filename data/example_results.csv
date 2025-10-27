@@ -1,0 +1,6 @@
+model,mode,lambda,val1,val2,val3
+SIR,Residual,0.5,120.0,14.0,870.0
+SIR,Residual,1.0,118.0,13.5,860.0
+SIR,Residual,1.5,115.0,13.2,855.0
+SIR,Residual,2.0,112.5,13.0,845.0
+SIR,Residual,2.5,110.0,12.8,838.0

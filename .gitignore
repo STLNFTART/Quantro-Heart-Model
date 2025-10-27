@@ -2,3 +2,10 @@
 __pycache__/
 *.pyc
 logs/
+artifacts/*
+!artifacts/.gitkeep
+generated_apl/
+*.apl
+# Ignore simulation dumps generated locally; curated samples live under data/
+results.csv
+*.gsbak

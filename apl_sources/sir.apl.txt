@@ -1,0 +1,24 @@
+\u235d RHS for SIR
+SIR_f \u2190 {
+  (x \u03b8 t) \u2190 \u2375 \u22c4 (S I Rc) \u2190 x \u22c4 (\u03b2 \u03b3 N) \u2190 \u03b8
+  inf \u2190 \u03b2\u00d7S\u00d7I \u00f7 N \u22c4 rec \u2190 \u03b3\u00d7I
+  dS \u2190 -inf \u22c4 dI \u2190 inf - rec \u22c4 dR \u2190 rec
+
+  \u235d Residual overlay
+  sR \u2190 \u03b1 \u00d7 (1\u25cb(\u03bb\u00d7t))
+  dS \u2190 dS + (Mode\u2261'Residual')\u00d7(sR\u00d7S)
+  dI \u2190 dI + (Mode\u2261'Residual')\u00d7(sR\u00d7I)
+  dR \u2190 dR + (Mode\u2261'Residual')\u00d7(sR\u00d7Rc)
+
+  \u235d Control overlay on I only
+  dI \u2190 dI + (Mode\u2261'Control')\u00d7U (t \u03b1 \u03bb)
+
+  \u235d ParamMod overlay: modulate \u03b2 then recompute base dynamics
+  \u03b2eff \u2190 \u03b2 \u00d7 (1 + (Mode\u2261'ParamMod')\u00d7\u03b1\u00d7TANH (\u03bb\u00d7I))
+  inf2 \u2190 \u03b2eff\u00d7S\u00d7I \u00f7 N
+  dS \u2190 (Mode\u2261'ParamMod')\u00d7(-inf2) + (Mode\u2262'ParamMod')\u00d7dS
+  dI \u2190 (Mode\u2261'ParamMod')\u00d7(inf2 - rec) + (Mode\u2262'ParamMod')\u00d7dI
+  dR \u2190 (Mode\u2261'ParamMod')\u00d7rec          + (Mode\u2262'ParamMod')\u00d7dR
+
+  (dS , dI , dR)
+}
