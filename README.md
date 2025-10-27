@@ -40,7 +40,7 @@ cd Quantro-Heart-Model
 apl -s -f run.apl > simulation.log
 ```
 
-### Python analysis workflow (v1.0.0)
+### Python analysis workflow (v1.1.0)
 
 ```bash
 # Create a virtual environment (recommended)
@@ -51,14 +51,19 @@ pip install --upgrade pip
 # Install pinned analysis/testing dependencies for reproducible results
 pip install -r requirements-dev.txt
 
-# Generate a rolling-average plot of SIR val1 across lambda values
+# Generate rolling-average plots of SIR val1 across lambda values
 python3 analyze_results.py \
   --input results.csv \
   --model SIR \
   --mode Residual \
   --column val1 \
   --window 5 \
-  --output artifacts/sir_val1_residual.png
+  --window-list 9 15 \
+  --min-periods 3 \
+  --center \
+  --fig-width 10 \
+  --fig-height 6 \
+  --output artifacts/sir_val1_residual_multi.png
 
 # Run the built-in unit tests for verification
 python3 -m unittest discover -s tests -v
@@ -69,7 +74,10 @@ The CLI stores plots under `artifacts/` by default to maintain traceability.
 ### Plot interpretation and benchmarking
 
 - Inspect the generated PNG to compare raw data against the rolling mean.
-- Adjust `--window` to benchmark sensitivity to smoothing.
+- Adjust `--window` or supply `--window-list` to benchmark smoothing sensitivity across multiple horizons.
+- Combine `--window-list` with `--skip-default-window` to isolate custom sweeps without the default span.
+- Tune `--min-periods` and `--center` for retrospective vs. streaming analyses.
+- Control figure layout with `--fig-width`/`--fig-height` to match publication requirements.
 - Use `--verbose` to collect diagnostic logs with summary statistics.
 
 ## Contributing
