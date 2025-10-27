@@ -1,3 +1,4 @@
+# Quantro-Heart-Model
 
 ## Quick run (no install)
 Use an online APL REPL:
@@ -13,15 +14,14 @@ Use an online APL REPL:
 - integrators.apl — RK4 with per-step TimeWarp
 - mm.apl / sir.apl / fhn.apl / nernst.apl / poiseuille.apl — model RHS
 - run.apl — driver that prints CSV
-# Quantro-Heart-Model
 
 ## Overview
-Quantro-Heart-Model is an open-source project developed by STLNFTART.  
-Describe the purpose, goals, and high-level functionality of the project here.
+Quantro-Heart-Model is an open-source project developed by STLNFTART. The toolkit explores modular reaction and transport models relevant to cardiac research with configurable overlays for experimentation.
 
 ## Features
-- List the primary features and strengths of your project.
-- Add or remove points as needed.
+- Time-domain integration of multiple electrophysiology and hemodynamics models (Michaelis-Menten, SIR, FitzHugh-Nagumo, Nernst potential, Poiseuille flow).
+- Overlay mechanisms supporting residual correction, parameter modulation, control inputs, and time-warp experimentation.
+- Python analysis companion tooling for CSV post-processing with statistical summaries and publication-ready plots.
 
 ## Installation
 
@@ -29,15 +29,48 @@ Describe the purpose, goals, and high-level functionality of the project here.
 # Clone the repository
 git clone https://github.com/STLNFTART/Quantro-Heart-Model.git
 cd Quantro-Heart-Model
-
-# Add specific setup instructions below
 ```
 
 ## Usage
 
+### APL simulation driver
+
 ```bash
-# Add usage examples or CLI commands here
+# Run with GNU APL (example)
+apl -s -f run.apl > simulation.log
 ```
+
+### Python analysis workflow (v1.0.0)
+
+```bash
+# Create a virtual environment (recommended)
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+
+# Install pinned analysis/testing dependencies for reproducible results
+pip install -r requirements-dev.txt
+
+# Generate a rolling-average plot of SIR val1 across lambda values
+python3 analyze_results.py \
+  --input results.csv \
+  --model SIR \
+  --mode Residual \
+  --column val1 \
+  --window 5 \
+  --output artifacts/sir_val1_residual.png
+
+# Run the built-in unit tests for verification
+python3 -m unittest discover -s tests -v
+```
+
+The CLI stores plots under `artifacts/` by default to maintain traceability.
+
+### Plot interpretation and benchmarking
+
+- Inspect the generated PNG to compare raw data against the rolling mean.
+- Adjust `--window` to benchmark sensitivity to smoothing.
+- Use `--verbose` to collect diagnostic logs with summary statistics.
 
 ## Contributing
 Contributions are welcome! Please open issues or submit pull requests.
