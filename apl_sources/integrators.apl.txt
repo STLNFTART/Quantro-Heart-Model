@@ -1,0 +1,15 @@
+\u235d RK4 integrator. Uses global f (RHS), Mode, \u03b1, \u03bb.
+RK4 \u2190 {
+  \u235d right arg: (x0 t0 \u03b8 dt steps)
+  (x t \u03b8 dt n) \u2190 \u2375
+  { \u235d one step
+    dti \u2190 dt \u00d7 (Mode\u2261'TimeWarp' : G t \u03b1 \u03bb \u22c4 1)
+    k1 \u2190 f (x \u03b8 t)
+    k2 \u2190 f ((x + 0.5\u00d7dti\u00d7k1) \u03b8 (t + 0.5\u00d7dti))
+    k3 \u2190 f ((x + 0.5\u00d7dti\u00d7k2) \u03b8 (t + 0.5\u00d7dti))
+    k4 \u2190 f ((x + dti\u00d7k3)      \u03b8 (t + dti))
+    x  \u2190 x + dti\u00d7(k1 + 2\u00d7k2 + 2\u00d7k3 + k4) \u00f7 6
+    t  \u2190 t + dti
+    x t
+  } \u2363 n \u22a2 x t
+}

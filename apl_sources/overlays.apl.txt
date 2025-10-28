@@ -1,0 +1,17 @@
+\u235d Overlays
+TANH \u2190 { \u235d tanh(x) = (e^x - e^-x)/(e^x + e^-x)
+  y\u2190\u2375 \u22c4 ( *y - *-y ) \u00f7 ( *y + *-y )
+}
+R \u2190 { \u235d residual term: \u03b1\u22c5sin(\u03bbt)\u22c5x
+  \u235d args: x t \u03b1 \u03bb
+  x t \u03b1 \u03bb \u2190 \u2375 \u22c4 \u03b1 \u00d7 (1\u25cb(\u03bb\u00d7t)) \u00d7 x
+}
+M \u2190 { \u235d param factor: 1 + \u03b1\u22c5tanh(\u03bbx)
+  x t \u03b1 \u03bb \u2190 \u2375 \u22c4 1 + \u03b1 \u00d7 TANH (\u03bb\u00d7x)
+}
+U \u2190 { \u235d control input: \u03b1\u22c5cos(\u03bbt)
+  t \u03b1 \u03bb \u2190 \u2375 \u22c4 \u03b1 \u00d7 (2\u25cb(\u03bb\u00d7t))
+}
+G \u2190 { \u235d time-warp factor \u2265 0: 1 \u2308 1 + \u03b1\u22c5sin(\u03bbt)
+  t \u03b1 \u03bb \u2190 \u2375 \u22c4 1 \u2308 1 + \u03b1 \u00d7 (1\u25cb(\u03bb\u00d7t))
+}

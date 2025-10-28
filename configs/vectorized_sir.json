@@ -1,0 +1,13 @@
+{
+  "betas": [0.18, 0.22, 0.26],
+  "gammas": [0.08, 0.1],
+  "contact_multipliers": [0.85, 1.0, 1.15],
+  "time_step": 0.25,
+  "duration": 48.0,
+  "population": 1000.0,
+  "initial_infected": 12.0,
+  "initial_recovered": 1.0,
+  "rolling_window": 5,
+  "output_csv": "artifacts/vectorized_sir_results.csv",
+  "output_plot": "artifacts/vectorized_sir_infectious.svg"
+}

@@ -1,0 +1,37 @@
+{
+  "version": "v1.1.0",
+  "tasks": [
+    {
+      "name": "sir_val1_residual_multi",
+      "input": "../data/example_results.csv",
+      "model": "SIR",
+      "mode": "Residual",
+      "column": "val1",
+      "window": 5,
+      "window_list": [9, 15],
+      "min_periods": 3,
+      "center": true,
+      "fig_width": 10.0,
+      "fig_height": 6.0,
+      "x_axis": "lambda",
+      "output": "../artifacts/sir_val1_residual_multi.svg",
+      "output_format": "svg"
+    },
+    {
+      "name": "sir_val2_residual_multi",
+      "input": "../data/example_results.csv",
+      "model": "SIR",
+      "mode": "Residual",
+      "column": "val2",
+      "window": 7,
+      "window_list": [11, 21],
+      "min_periods": 3,
+      "center": true,
+      "fig_width": 10.0,
+      "fig_height": 6.0,
+      "x_axis": "lambda",
+      "output": "../artifacts/sir_val2_residual_multi.svg",
+      "output_format": "svg"
+    }
+  ]
+}
